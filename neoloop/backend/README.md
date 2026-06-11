@@ -11,6 +11,8 @@ This repository contains the Backend API built using:
 * SQLAlchemy
 * Alembic
 * JWT Authentication
+* Marshmallow Validation
+* Swagger Documentation
 
 ---
 
@@ -28,15 +30,9 @@ Completed:
 * Base Model Structure
 * Initial Database Schema Design
 * Entity Relationship Design
-
-In Progress:
-
 * Complete Database Models
 * Initial Migration Creation
 * Role Seeding
-
-Upcoming:
-
 * JWT Authentication
 * Register API
 * Login API
@@ -169,6 +165,31 @@ Run Application:
 python app.py
 
 ---
+# Swagger Documentation
+
+After starting the application:
+
+http://127.0.0.1:5000/apidocs
+
+Swagger UI provides interactive API testing and documentation.
+
+#  Authentication APIs
+
+Public APIs:
+
+POST /api/auth/register
+
+POST /api/auth/login
+
+POST /api/auth/request-password-reset
+
+POST /api/auth/reset-password
+
+Protected APIs:
+
+GET /api/auth/me
+
+POST /api/auth/change-password
 
 # Core MVP Modules
 
@@ -230,35 +251,35 @@ leaderboard
 
 ---
 
-# Notes
-
-During initial setup, the following issues were identified and resolved:
-
-1. PostgreSQL connection string issue caused by special characters in passwords.
-
-2. SQLAlchemy reserved keyword conflict using 'metadata' as a model attribute.
-
-3. Model registration/import issues affecting Alembic migration detection.
-
-These fixes have been incorporated into the current implementation.
-
----
-
 # Next Steps
 
-Phase 1.3
+## Phase 2 - Room Management
 
-* JWT Setup
-* Password Hashing
-* Authentication Utilities
-* Role-Based Authorization
+Room APIs:
 
-Phase 1.4
+Create Room
+Update Room
+Delete Room
+Publish Room
+List Rooms
+Room Details
 
-* Register API
-* Login API
-* Profile API
-* Forgot Password API
-* Reset Password API
+Room Objects:
 
-Target: Complete Sprint 1 Authentication Module.
+Add Object
+Update Object
+Delete Object
+
+Room Items:
+
+Add Item
+Update Item
+Delete Item
+
+Puzzle Management:
+
+Create Puzzle
+Update Puzzle
+Puzzle Dependency Graph
+
+Target: Complete Room Builder MVP.

@@ -1,0 +1,44 @@
+tags:
+  - Authentication
+
+summary: Register User
+
+parameters:
+  - in: body
+    name: body
+    required: true
+
+    schema:
+      type: object
+
+      required:
+        - role_id
+        - name
+        - email
+        - password
+
+      properties:
+
+        role_id:
+          type: integer
+          example: 2
+
+        name:
+          type: string
+          example: John Doe
+
+        email:
+          type: string
+          example: john@test.com
+
+        password:
+          type: string
+          example: Password@123
+
+responses:
+
+  201:
+    description: User registered successfully
+
+  400:
+    description: Validation error

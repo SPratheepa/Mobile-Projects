@@ -1,0 +1,15 @@
+tags:
+  - Authentication
+
+summary: Current User Profile
+
+security:
+  - Bearer: []
+
+responses:
+
+  200:
+    description: User Profile
+
+  401:
+    description: Unauthorized
