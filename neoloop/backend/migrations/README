@@ -1,0 +1,111 @@
+﻿Single-database configuration for Flask.
+
+# NeoLoop Database Migrations
+
+This directory contains Alembic migration scripts used for managing PostgreSQL database schema changes.
+
+## Purpose
+
+Alembic is used to:
+
+* Track database schema changes
+* Generate migration scripts
+* Apply schema updates across environments
+* Maintain version history of database changes
+
+## Directory Structure
+
+migrations/
+
+├── README
+
+├── env.py
+
+├── script.py.mako
+
+└── versions/
+
+
+└── *.py
+
+
+### versions/
+
+Contains all generated migration files.
+
+Example:
+
+versions/
+└── 4c3b8e5a9d_initial_schema.py
+
+
+## Common Commands
+
+### Generate Migration
+
+After updating SQLAlchemy models:
+
+flask db migrate -m "migration description"
+
+Example:
+
+flask db migrate -m "add rooms table"
+
+### Apply Migration
+
+flask db upgrade
+
+### Rollback Last Migration
+
+flask db downgrade -1
+
+### Show Current Version
+
+flask db current
+
+### Show Migration History
+
+flask db history
+
+## Development Guidelines
+
+1. Always update SQLAlchemy models first.
+2. Generate migrations using Alembic.
+3. Review generated migration scripts before committing.
+4. Commit migration files along with model changes.
+5. Never manually modify production database schema without a migration.
+
+## Files To Commit
+
+Commit:
+
+* alembic.ini
+* migrations/env.py
+* migrations/script.py.mako
+* migrations/versions/*.py
+
+Do Not Commit:
+
+* **pycache**/
+* *.pyc
+* Local environment files
+
+## NeoLoop MVP Tables
+
+The migration history will manage schema changes for:
+
+* roles
+* users
+* rooms
+* room_objects
+* room_items
+* puzzles
+* puzzle_dependency
+* game_sessions
+* game_progress
+* player_inventory
+* leaderboard
+
+## Notes
+
+Migration scripts should be reviewed carefully before applying them to shared or production environments.
