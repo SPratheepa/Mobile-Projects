@@ -1,0 +1,67 @@
+tags:
+  - Rooms
+
+summary: Get Room
+
+description: Get room details by id.
+
+security:
+  - BearerAuth: []
+
+parameters:
+  - in: path
+    name: room_id
+    required: true
+    schema:
+      type: integer
+
+responses:
+  200:
+    description: Room details
+
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+
+            data:
+              type: object
+              properties:
+                id:
+                  type: integer
+
+                name:
+                  type: string
+
+                description:
+                  type: string
+
+                story:
+                  type: string
+
+                room_type:
+                  type: string
+
+                difficulty:
+                  type: string
+
+                estimated_time:
+                  type: integer
+
+                max_loops:
+                  type: integer
+
+                status:
+                  type: string
+
+                is_published:
+                  type: boolean
+
+                creator_id:
+                  type: integer
+
+  404:
+    description: Room not found

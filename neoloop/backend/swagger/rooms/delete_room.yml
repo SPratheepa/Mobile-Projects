@@ -1,0 +1,26 @@
+tags:
+  - Rooms
+
+summary: Delete Room
+
+description: Soft delete a room.
+
+security:
+  - BearerAuth: []
+
+parameters:
+  - in: path
+    name: room_id
+    required: true
+    schema:
+      type: integer
+
+responses:
+  200:
+    description: Room deleted successfully
+
+  404:
+    description: Room not found
+
+  403:
+    description: Permission denied

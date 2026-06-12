@@ -1,0 +1,49 @@
+tags:
+  - Rooms
+
+summary: Update Room
+
+security:
+  - BearerAuth: []
+
+parameters:
+
+  - in: path
+    name: room_id
+    required: true
+    type: integer
+
+  - in: body
+    name: body
+    required: true
+
+    schema:
+      type: object
+
+      properties:
+
+        name:
+          type: string
+
+        description:
+          type: string
+
+        story:
+          type: string
+
+        room_type:
+          type: string
+
+        difficulty:
+          type: string
+
+        estimated_time:
+          type: integer
+
+        max_loops:
+          type: integer
+
+responses:
+
+  200:
+    description: Room updated successfully

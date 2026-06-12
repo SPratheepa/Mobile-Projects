@@ -96,10 +96,22 @@ class AuthHelper:
             )
         )
 
-        return {
+        user_data = {
+            "id": user.id,
+            "name": user.name,
+            "email": user.email,
+            "role": user.role.code
+        }
+
+        tokens = {
             "access_token": access_token,
             "refresh_token": refresh_token,
             "token_type": "Bearer"
+        }
+
+        return {
+            "user": user_data,
+            "tokens": tokens
         }
     
 def get_current_user():
@@ -109,6 +121,21 @@ def get_current_user():
         "current_user",
         None
     )
+
+def get_current_user_details():
+
+    user = get_current_user()
+
+    if not user:
+        return {}
+
+    return {
+        "user_id": user.id,
+        "email": user.email,
+        "name": user.name,
+        "role": user.role.code,
+        "role_id": user.role_id
+    }
 
 def auth_required(fn):
 

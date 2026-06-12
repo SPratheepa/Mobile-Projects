@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>NeoLoop | Login</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/auth.css">
+
+</head>
+
+<body>
+<a
+    href="../index.html"
+    class="back-home">
+
+    ← Back to Home
+
+</a>
+<div class="auth-card">
+
+    <div class="logo">
+        Neo<span>Loop</span>
+    </div>
+
+    <h2 class="auth-title">
+        Welcome Back
+    </h2>
+
+    <input
+        id="email"
+        type="email"
+        placeholder="Email Address">
+
+    <input
+        id="password"
+        type="password"
+        placeholder="Password">
+
+    <button onclick="login()">
+        Login
+    </button>
+
+    <div class="auth-footer">
+
+        <a href="register.html">
+            Create Account
+        </a>
+
+    </div>
+
+</div>
+
+<script src="../js/api.js"></script>
+
+<script>
+
+async function login() {
+
+    const payload = {
+
+        email:
+            document
+                .getElementById(
+                    "email"
+                )
+                .value,
+
+        password:
+            document
+                .getElementById(
+                    "password"
+                )
+                .value
+    };
+
+    const response =
+        await apiRequest(
+            "/api/auth/login",
+            "POST",
+            payload
+        );
+
+    console.log(response);
+
+    if (!response.success) {
+
+        alert(
+            response.message
+        );
+
+        return;
+    }
+
+    localStorage.setItem(
+        "access_token",
+        response.data.tokens.access_token
+    );
+
+    localStorage.setItem(
+        "refresh_token",
+        response.data.tokens.refresh_token
+    );
+
+    localStorage.setItem(
+        "role",
+        response.data.user.role
+    );
+    const roleCode =
+        response.data.user.role;
+
+    if (
+        roleCode === "CREATOR"
+    ) {
+
+        window.location.href =
+            "dashboard.html";
+    }
+    else {
+
+        window.location.href =
+            "player-dashboard.html";
+    }
+}
+
+</script>
+
+</body>
+
+</html>

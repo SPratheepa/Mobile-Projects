@@ -19,8 +19,12 @@ from utils.schema_validator import (
     SchemaValidator
 )
 
-from utils.swagger_paths import SWAGGER_DIR
-LOGIN_SWAGGER = os.path.join(SWAGGER_DIR, "auth", "login.yml")
+from utils.auth_utils import (
+    auth_required,
+    get_current_user
+)
+
+from utils.swagger_docs import swag
 
 login_bp = Blueprint(
     "login",
@@ -32,7 +36,7 @@ login_bp = Blueprint(
     "/login",
     methods=["POST"]
 )
-@swag_from(LOGIN_SWAGGER)
+@swag_from(swag("auth", "login.yml"))
 def login():
     payload = SchemaValidator.validate(LoginSchema(),
         request.get_json()
@@ -52,3 +56,20 @@ def login():
     )
 
     
+@login_bp.route(
+    "/logout",
+    methods=["POST"]
+)
+@auth_required
+def logout():
+
+    current_user = get_current_user()
+
+    auth_service.logout_user(
+        current_user.id
+    )
+
+    return success_response(
+        {},
+        "Logout successful"
+    )

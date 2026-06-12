@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NeoLoop — Your Room, Your Escape</title>
+  <meta name="description" content="Upload your real room and play it as an AI-generated 3D escape room with time loops and hidden puzzles."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/landing.css"/>
+</head>
+<body>
+
+  <div class="bg-canvas">
+    <div class="grid-overlay"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <nav class="navbar">
+
+      <div class="nav-inner">
+
+          <a href="index.html" class="logo">
+
+              <span class="logo-icon">⬡</span>
+              Neo<span>Loop</span>
+
+          </a>
+
+          <div class="nav-links">
+
+              <a href="#howitworks">
+                  How It Works
+              </a>
+
+              <a href="#features">
+                  Features
+              </a>
+
+              <a href="#modes">
+                  Modes
+              </a>
+
+              <a href="pages/register.html?role=PLAYER">
+                  Play Now
+              </a>
+
+              <a href="pages/register.html?role=CREATOR">
+                  Become Creator
+              </a>
+
+          </div>
+
+          <a
+             href="pages/login.html"
+             class="nav-cta"
+             id="nav-play-btn">
+
+             Login ↗
+
+          </a>
+
+      </div>
+
+  </nav>
+
+  <section class="hero">
+    <div class="hero-tag"><span class="dot"></span>AI-Powered Reality Gaming</div>
+    <h1>Your <span class="grad">Real Room</span><br/>Becomes Your<br/><span class="loop-text">Escape Room</span></h1>
+    <p class="hero-sub">Upload any space. NeoLoop's AI converts it into a 3D interactive puzzle world — complete with time loops, hidden clues, and infinite replayability.</p>
+    <div class="hero-btns">
+      <a href="pages/register.html?role=PLAYER"
+        class="btn-primary">
+
+          🎮 Play Escape Rooms
+
+      </a>
+      <a href="pages/register.html?role=CREATOR"
+        class="btn-ghost">
+
+          🚀 Become Creator
+
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="sv">∞</span><span class="sl">Unique Rooms</span></div>
+      <div class="sdiv"></div>
+      <div class="stat"><span class="sv">5</span><span class="sl">Time Loops</span></div>
+      <div class="sdiv"></div>
+      <div class="stat"><span class="sv">AI</span><span class="sl">Puzzle Engine</span></div>
+    </div>
+
+    <!-- Room Preview Card -->
+    <div class="preview-card">
+      <div class="pcard-top">
+        <div class="phud-loop">↺ LOOP 3 / 5</div>
+        <div class="phud-timer">⏱ 02:47</div>
+      </div>
+      <div class="pscene">
+        <div class="ps-floor"></div>
+        <div class="ps-wall-b"></div>
+        <div class="ps-wall-l"></div>
+        <div class="ps-obj ps-desk"><span class="pobj-lbl">📁 desk</span><div class="pobj-glow"></div></div>
+        <div class="ps-obj ps-lamp"><span class="pobj-lbl">💡 lamp</span><div class="pobj-glow g-yellow"></div></div>
+        <div class="ps-obj ps-drawer"><span class="pobj-lbl">🗝️ clue</span><div class="pobj-glow g-teal"></div></div>
+        <div class="ps-obj ps-door"><div class="ps-door-panel"></div><span class="pobj-lbl">🚪 exit</span></div>
+        <div class="ps-hint"><div class="hint-ring"></div>Note changed in loop 3!</div>
+      </div>
+      <div class="pcard-controls">
+        <span class="pctrl active">WASD Move</span>
+        <span class="pctrl">E Interact</span>
+        <span class="pctrl">R Reset Loop</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section" id="howitworks">
+    <div class="container">
+      <div class="sec-hdr">
+        <span class="sec-tag">The Process</span>
+        <h2>From Real Room to Escape Room</h2>
+        <p>Four intelligent stages transform any physical space into a fully playable puzzle experience.</p>
+      </div>
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <div class="step-ico">🎥</div>
+          <h3>Capture</h3>
+          <p>Walk around your space recording video or photos. Upload — our AI handles the rest.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <div class="step-ico">🧱</div>
+          <h3>Reconstruct</h3>
+          <p>Object detection maps your room into a navigable 3D scene graph in real-time.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <div class="step-ico">🔐</div>
+          <h3>Inject Puzzles</h3>
+          <p>The AI maps real objects to game logic: keys, locks, patterns, sound triggers.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-card">
+          <div class="step-num">04</div>
+          <div class="step-ico">🔁</div>
+          <h3>Time Loop</h3>
+          <p>Each loop subtly changes your room. Clues evolve. New paths unlock. Escape before loop 5.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section feat-section" id="features">
+    <div class="container">
+      <div class="sec-hdr">
+        <span class="sec-tag">Core Systems</span>
+        <h2>Built Different. Actually Different.</h2>
+      </div>
+      <div class="feat-grid">
+        <div class="feat-card feat-wide">
+          <div class="feat-vis">
+            <div class="rmap">
+              <div class="rmap-item" style="--d:0s">🪞 Mirror <span>→</span> Alternate Reality Clue</div>
+              <div class="rmap-item" style="--d:.12s">🕐 Clock <span>→</span> Loop Trigger</div>
+              <div class="rmap-item" style="--d:.24s">🚪 Door <span>→</span> Loop Reset</div>
+              <div class="rmap-item" style="--d:.36s">🛏️ Bed <span>→</span> Hidden Compartment</div>
+              <div class="rmap-item" style="--d:.48s">💡 Lamp <span>→</span> Sound Clue</div>
+            </div>
+          </div>
+          <div class="feat-txt">
+            <span class="feat-tag">🧬 Core IP</span>
+            <h3>Reality → Logic Engine</h3>
+            <p>Every real-world object gets a game meaning. Mirrors reveal alternate realities. Clocks trigger loops. No two rooms map the same way.</p>
+          </div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-ico">🔁</div>
+          <h3>Temporal Loop System</h3>
+          <p>5 unique loops with increasing complexity. Memory is your only weapon.</p>
+          <div class="loop-bars">
+            <div class="lbar" style="--w:20%"><span>Loop 1</span></div>
+            <div class="lbar" style="--w:40%"><span>Loop 2</span></div>
+            <div class="lbar" style="--w:62%"><span>Loop 3</span></div>
+            <div class="lbar" style="--w:80%"><span>Loop 4</span></div>
+            <div class="lbar lbar-final" style="--w:100%"><span>Loop 5 ⚡</span></div>
+          </div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-ico">🤖</div>
+          <h3>AI Puzzle Injection</h3>
+          <p>Hybrid AI + rule-based engine generates unique puzzles per room automatically.</p>
+          <div class="chips">
+            <span>Pattern Locks</span><span>Sound Triggers</span><span>Visual Ciphers</span><span>Hidden Keys</span>
+          </div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-ico">🏆</div>
+          <h3>"Challenge My Room"</h3>
+          <p>Share your room. Global leaderboard. Your space — the world's puzzle.</p>
+          <div class="lb-mock">
+            <div class="lb-row">🥇 ghostplayer_22 <span>01:14</span></div>
+            <div class="lb-row">🥈 loop_wizard <span>01:47</span></div>
+            <div class="lb-row lb-you">👤 You <span>?</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modes -->
+  <section class="section" id="modes">
+    <div class="container">
+      <div class="sec-hdr">
+        <span class="sec-tag">Game Modes</span>
+        <h2>Every Mode. A Different Reality.</h2>
+      </div>
+      <div class="modes-grid">
+        <div class="mode-card">
+          <div class="mode-ico">🏠</div>
+          <div class="mode-aura ma-purple"></div>
+          <h3>Play Your Room</h3>
+          <p>Your personal space becomes your personal puzzle. Emotional connection drives unforgettable gameplay.</p>
+          <ul><li>✦ 5 time loop variations</li><li>✦ 12+ auto-generated puzzles</li><li>✦ Shareable link</li></ul>
+          <a href="upload.html" class="mode-btn" id="mode-own-btn">Upload Your Room →</a>
+        </div>
+        <div class="mode-card mode-card-mid">
+          <div class="mode-ico">🌍</div>
+          <div class="mode-aura ma-blue"></div>
+          <h3>Explore Others</h3>
+          <p>Play rooms submitted by the community. Infinite content, zero repetition.</p>
+          <ul><li>✦ Global room catalog</li><li>✦ Difficulty ratings</li><li>✦ Leaderboard per room</li></ul>
+          <a href="upload.html?demo=explore" class="mode-btn" id="mode-explore-btn">Browse Rooms →</a>
+        </div>
+        <div class="mode-card">
+          <div class="mode-ico">🤖</div>
+          <div class="mode-aura ma-teal"></div>
+          <h3>AI Rooms</h3>
+          <p>Type "Haunted 1920s laboratory." NeoLoop builds it. Puzzles included.</p>
+          <ul><li>✦ Prompt-to-3D generation</li><li>✦ Mood & genre selection</li><li>✦ Difficulty scaling</li></ul>
+          <a href="upload.html?demo=ai" class="mode-btn" id="mode-ai-btn">Generate Room →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-sec">
+    <div class="cta-inner">
+      <div class="cta-badge">🔁 The Loop Awaits</div>
+      <h2>Ready to Escape Your Own Reality?</h2>
+      <p>Join thousands playing their rooms. Upload once. Loop forever.</p>
+      <a href="upload.html" class="btn-primary btn-lg" id="cta-start-btn">Start Your Loop</a>
+      <div class="cta-note">No account needed for the demo.</div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-in">
+      <div class="footer-brand">Neo<span class="accent">Loop</span> · Real rooms. Real puzzles. Infinite loops.</div>
+      <div class="footer-links"><a href="upload.html">Play</a><a href="#features">Features</a><a href="#modes">Modes</a></div>
+    </div>
+    <div class="footer-copy">© 2026 NeoLoop. Reality is just the beginning.</div>
+  </footer>
+
+  <script src="js/landing.js"></script>
+  <script>
+
+  const token =
+      localStorage.getItem(
+          "access_token"
+      );
+
+  const role =
+      localStorage.getItem(
+          "role"
+      );
+
+  if(token){
+
+      const dashboardLink =
+          role === "CREATOR"
+              ? "pages/dashboard.html"
+              : "pages/player-dashboard.html";
+
+      document.getElementById(
+          "nav-play-btn"
+      ).href =
+          dashboardLink;
+
+      document.getElementById(
+          "nav-play-btn"
+      ).innerText =
+          "Dashboard ↗";
+
+      document.getElementById(
+          "mode-own-btn"
+      ).href =
+          dashboardLink;
+
+      document.getElementById(
+          "mode-explore-btn"
+      ).href =
+          dashboardLink;
+
+      document.getElementById(
+          "mode-ai-btn"
+      ).href =
+          dashboardLink;
+
+      document.getElementById(
+          "cta-start-btn"
+      ).href =
+          dashboardLink;
+  }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+tags:
+  - Rooms
+
+summary: Unpublish Room
+
+description: Unpublish a previously published room and move it back to DRAFT status.
+
+security:
+  - BearerAuth: []
+
+parameters:
+  - in: path
+    name: room_id
+    required: true
+    schema:
+      type: integer
+
+responses:
+  200:
+    description: Room unpublished successfully
+
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+
+            message:
+              type: string
+              example: Room unpublished successfully
+
+  404:
+    description: Room not found
+
+  403:
+    description: Permission denied
+
+  400:
+    description: Validation error

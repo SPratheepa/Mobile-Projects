@@ -12,3 +12,6 @@ class NotFoundException(Exception):
 
 class ServiceException(Exception):
     pass
+
+class BusinessRuleException(Exception):
+    pass

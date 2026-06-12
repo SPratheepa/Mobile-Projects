@@ -47,16 +47,31 @@ class AuthService:
 
         return self.user_repo.create(user)
     
-    def authenticate_user(self, email, password, device_info=None):
+    def authenticate_user(
+            self,
+            email,
+            password,
+            device_info=None
+    ):
 
-        user = (AuthHelper.authenticate_user(email, password, device_info))
+        user = AuthHelper.authenticate_user(
+            email,
+            password,
+            device_info
+        )
 
-        user.last_login = datetime.now(timezone.utc)
+        user.last_login = datetime.now(
+            timezone.utc
+        )
 
         db.session.commit()
 
-        return (AuthHelper.generate_user_tokens(user, device_info))
-    
+        tokens = AuthHelper.generate_user_tokens(user)
+        return {
+            **tokens,
+            "device_info": device_info
+        }
+        
     def get_profile(self, user_id):
 
         user = (self.user_repo.get_active_user(user_id))

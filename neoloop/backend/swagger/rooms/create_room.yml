@@ -1,0 +1,71 @@
+tags:
+  - Rooms
+
+summary: Create Room
+
+description: Create a new escape room.
+
+security:
+  - BearerAuth: []
+
+parameters:
+  - in: body
+    name: body
+    required: true
+
+    schema:
+      type: object
+
+      required:
+        - name
+        - description
+        - room_type
+        - difficulty
+        - estimated_time
+
+      properties:
+
+        name:
+          type: string
+          example: Bedroom Escape
+
+        description:
+          type: string
+          example: Escape from the bedroom
+
+        story:
+          type: string
+          example: You wake up trapped inside a mysterious room.
+
+        room_type:
+          type: string
+          example: BEDROOM
+
+        difficulty:
+          type: string
+          enum:
+            - EASY
+            - MEDIUM
+            - HARD
+
+        estimated_time:
+          type: integer
+          example: 15
+
+        max_loops:
+          type: integer
+          example: 5
+
+        thumbnail:
+          type: object
+
+responses:
+
+  201:
+    description: Room created successfully
+
+  400:
+    description: Validation error
+
+  403:
+    description: Permission denied

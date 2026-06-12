@@ -1,0 +1,44 @@
+tags:
+  - Rooms
+
+summary: My Rooms
+
+security:
+  - BearerAuth: []
+
+parameters:
+  - in: body
+    name: body
+    required: true
+
+    schema:
+      type: object
+
+      properties:
+
+        page:
+          type: integer
+          example: 1
+
+        per_page:
+          type: integer
+          example: 20
+
+        search:
+          type: string
+
+        sort_by:
+          type: string
+          example: cr_on
+
+        sort_order:
+          type: string
+          example: desc
+
+        filters:
+          type: object
+
+responses:
+
+  200:
+    description: Rooms fetched successfully

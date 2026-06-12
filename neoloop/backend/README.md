@@ -39,6 +39,29 @@ Completed:
 * Profile API
 * Forgot Password API
 * Reset Password API
+* Change Password API
+* Logout API
+* Role-Based Authorization
+* Marshmallow Request Validation
+* Global Exception Handling
+* Swagger Documentation
+
+## Sprint 2 - Room Management
+
+Completed:
+
+* Create Room API
+* Update Room API
+* Delete Room API
+* Get Room Details API
+* My Rooms API
+* Publish Room API
+* Unpublish Room API
+
+In Progress:
+
+* Room Object APIs
+* Room Item APIs
 
 ---
 
@@ -175,7 +198,7 @@ Swagger UI provides interactive API testing and documentation.
 
 #  Authentication APIs
 
-Public APIs:
+Public APIs
 
 POST /api/auth/register
 
@@ -185,11 +208,31 @@ POST /api/auth/request-password-reset
 
 POST /api/auth/reset-password
 
-Protected APIs:
+Protected APIs
 
 GET /api/auth/me
 
 POST /api/auth/change-password
+
+POST /api/auth/logout
+
+#  Room APIs
+
+Protected APIs:
+
+POST /api/rooms
+
+PUT /api/rooms/{room_id}
+
+DELETE /api/rooms/{room_id}
+
+GET /api/rooms/{room_id}
+
+POST /api/rooms/my-rooms
+
+POST /api/rooms/{room_id}/publish
+
+POST /api/rooms/{room_id}/unpublish
 
 # Core MVP Modules
 
@@ -227,25 +270,26 @@ Leaderboard
 
 # Database Entities
 
-roles
+Authentication:
 
+roles
 users
 
+Room Builder:
+
 rooms
-
 room_objects
-
 room_items
 
+Gameplay:
+
 puzzles
-
 puzzle_dependency
-
 game_sessions
-
 game_progress
-
 player_inventory
+
+Community:
 
 leaderboard
 
@@ -253,33 +297,63 @@ leaderboard
 
 # Next Steps
 
-## Phase 2 - Room Management
+## Phase 2.2 - Room Builder
 
-Room APIs:
+Room Objects
 
-Create Room
-Update Room
-Delete Room
-Publish Room
-List Rooms
-Room Details
+* Create Object API
+* Update Object API
+* Delete Object API
+* List Room Objects API
 
-Room Objects:
+Room Items
 
-Add Object
-Update Object
-Delete Object
+* Create Item API
+* Update Item API
+* Delete Item API
+* List Room Items API
 
-Room Items:
+Target:
+Complete Room Builder MVP
 
-Add Item
-Update Item
-Delete Item
+# Future Roadmap
 
-Puzzle Management:
+Phase 3 - Room Discovery
 
-Create Puzzle
-Update Puzzle
-Puzzle Dependency Graph
+* Public Room Browser
+* Room Details
+* Search & Filters
 
-Target: Complete Room Builder MVP.
+Phase 4 - Gameplay
+
+* Game Sessions
+* Puzzle Engine
+* Inventory System
+* Progress Tracking
+* Time Loop Engine
+
+Phase 5 - AI Features
+
+* Prompt-Based Room Generation
+* AI Story Generation
+* AI Puzzle Suggestions
+
+Phase 6 - Vision AI
+
+* Room Photo Upload
+* Room Video Upload
+* Object Detection
+* Scene Understanding
+
+Phase 7 - Community
+
+* Leaderboards
+* Ratings & Reviews
+* Challenge My Room
+
+Phase 8 - Production
+
+* Security Hardening
+* Monitoring
+* Performance Optimization
+* Public Release

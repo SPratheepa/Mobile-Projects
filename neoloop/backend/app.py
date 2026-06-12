@@ -10,6 +10,7 @@ from config.database import db
 from config.settings import Config
 
 import models
+from flask_cors import CORS
 
 from services.seed_service import SeedService
 
@@ -17,6 +18,8 @@ from blueprints.auth.registration import registration_bp
 from blueprints.auth.login import login_bp
 from blueprints.auth.profile import profile_bp
 from blueprints.auth.password import password_bp
+from blueprints.rooms.room import room_bp
+from blueprints.public.role import role_bp
 
 from middleware.error_handler import (
     register_error_handlers
@@ -28,6 +31,8 @@ migrate = Migrate()
 def create_app():
 
     app = Flask(__name__)
+
+    CORS(app)
 
     app.config.from_object(Config)
 
@@ -46,7 +51,9 @@ def create_app():
     app.register_blueprint(login_bp)
     app.register_blueprint(profile_bp)
     app.register_blueprint(password_bp)
-
+    app.register_blueprint(room_bp)
+    app.register_blueprint(role_bp)
+    
     register_error_handlers(app)
 
     return app

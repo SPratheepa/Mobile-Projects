@@ -1,0 +1,134 @@
+tags:
+  - Rooms
+
+summary: Public Rooms
+
+description: Retrieve published rooms available for players.
+
+security:
+  - BearerAuth: []
+
+parameters:
+  - in: body
+    name: body
+    required: true
+
+    schema:
+      type: object
+
+      properties:
+
+        page:
+          type: integer
+          example: 1
+
+        per_page:
+          type: integer
+          example: 20
+
+        search:
+          type: string
+          example: mystery
+
+        sort_by:
+          type: string
+          example: cr_on
+
+        sort_order:
+          type: string
+          enum:
+            - asc
+            - desc
+          example: desc
+
+        filters:
+          type: object
+
+          properties:
+
+            difficulty:
+              type: string
+              example: EASY
+
+            room_type:
+              type: string
+              example: BEDROOM
+
+responses:
+
+  200:
+    description: Published rooms fetched successfully
+
+    schema:
+      type: object
+
+      properties:
+
+        success:
+          type: boolean
+
+        message:
+          type: string
+
+        data:
+          type: object
+
+          properties:
+
+            items:
+              type: array
+
+              items:
+                type: object
+
+                properties:
+
+                  id:
+                    type: integer
+
+                  name:
+                    type: string
+
+                  description:
+                    type: string
+
+                  room_type:
+                    type: string
+
+                  difficulty:
+                    type: string
+
+                  estimated_time:
+                    type: integer
+
+                  is_published:
+                    type: boolean
+
+                  status:
+                    type: string
+
+            pagination:
+              type: object
+
+              properties:
+
+                total:
+                  type: integer
+
+                page:
+                  type: integer
+
+                per_page:
+                  type: integer
+
+                pages:
+                  type: integer
+
+  400:
+    description: Validation error
+
+  401:
+    description: Unauthorized
+
+  403:
+    description: Permission denied

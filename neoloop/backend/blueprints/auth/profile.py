@@ -10,14 +10,13 @@ from flasgger import swag_from
 from blueprints.auth import auth_service
 
 from utils.auth_utils import (
-    auth_required
+    auth_required, get_current_user_details
 )
 
 from utils.responses import (
     success_response
 )
-from utils.swagger_paths import SWAGGER_DIR
-PROFILE_SWAGGER = os.path.join(SWAGGER_DIR, "auth", "profile.yml")
+from utils.swagger_docs import swag
 
 profile_bp = Blueprint(
     "profile",
@@ -30,17 +29,8 @@ profile_bp = Blueprint(
     methods=["GET"]
 )
 @auth_required
-@swag_from(PROFILE_SWAGGER)
+@swag_from(swag("auth", "profile.yml"))
 def me():
-    profile = (
-        auth_service
-        .get_profile(
-            int(
-                get_jwt_identity()
-            )
-        )
-    )
-
     return success_response(
-        profile
+        get_current_user_details()
     )

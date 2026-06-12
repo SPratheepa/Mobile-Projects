@@ -30,11 +30,7 @@ from schemas.change_password_schema import (
 from utils.schema_validator import (
     SchemaValidator
 )
-from utils.swagger_paths import SWAGGER_DIR
-
-REQUEST_PASSWORD_RESET_SWAGGER = os.path.join(SWAGGER_DIR, "auth", "request_password_reset.yml")
-RESET_PASSWORD_SWAGGER = os.path.join(SWAGGER_DIR, "auth", "reset_password.yml")
-CHANGE_PASSWORD_SWAGGER = os.path.join(SWAGGER_DIR, "auth", "change_password.yml")
+from utils.swagger_docs import swag
 
 password_bp = Blueprint(
     "password",
@@ -43,7 +39,7 @@ password_bp = Blueprint(
 )
 
 @password_bp.route("/request-password-reset", methods=["POST"])
-@swag_from(REQUEST_PASSWORD_RESET_SWAGGER)
+@swag_from(swag("auth", "request_password_reset.yml"))
 def request_password_reset():
     payload = SchemaValidator.validate(
         ForgotPasswordSchema(),
@@ -65,7 +61,7 @@ def request_password_reset():
     
 
 @password_bp.route("/reset-password", methods=["POST"])
-@swag_from(RESET_PASSWORD_SWAGGER)
+@swag_from(swag("auth", "reset_password.yml"))
 def reset_password():
     payload = SchemaValidator.validate(
         ResetPasswordSchema(),
@@ -81,7 +77,7 @@ def reset_password():
     )
     
 @password_bp.route("/change-password", methods=["POST"])
-@swag_from(CHANGE_PASSWORD_SWAGGER)
+@swag_from(swag("auth", "change_password.yml"))
 @auth_required
 def change_password():
     payload = SchemaValidator.validate(

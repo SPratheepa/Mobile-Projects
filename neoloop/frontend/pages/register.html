@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>NeoLoop | Register</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/auth.css">
+
+</head>
+
+<body>
+<a href="../index.html" class="home-link">
+    ← Back to Home
+</a>
+<div class="auth-card">
+
+    <div class="logo">
+        Neo<span>Loop</span>
+    </div>
+
+    <h2 class="auth-title">
+        Create Account
+    </h2>
+
+    <input
+        id="name"
+        type="text"
+        placeholder="Full Name">
+
+    <input
+        id="email"
+        type="email"
+        placeholder="Email Address">
+
+    <input
+        id="password"
+        type="password"
+        placeholder="Password">
+
+    <select id="role">
+
+        <option
+            value=""
+            disabled
+            selected>
+
+            Select Role
+
+        </option>
+
+    </select>
+
+    <button onclick="register()">
+
+        Create Account
+
+    </button>
+
+    <div class="auth-footer">
+
+        <a href="login.html">
+
+            Already have an account?
+
+        </a>
+
+    </div>
+
+</div>
+
+<script src="../js/api.js"></script>
+
+<script>
+
+let roles = [];
+
+async function loadRoles(){
+
+    const response =
+        await apiRequest(
+            "/api/public/non-admin-roles",
+            "GET"
+        );
+
+    console.log(
+        "Roles Response:",
+        response
+    );
+
+    if(!response.success){
+
+        alert(
+            "Unable to load roles"
+        );
+
+        return;
+    }
+
+    roles = response.data;
+
+    const roleSelect =
+        document.getElementById(
+            "role"
+        );
+
+    roles.forEach(role => {
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+        option.value =
+            role.id;
+
+        option.textContent =
+            role.name;
+
+        roleSelect.appendChild(
+            option
+        );
+    });
+
+    autoSelectRole();
+    const requestedRole =
+        new URLSearchParams(
+            window.location.search
+        ).get("role");
+
+    if(requestedRole){
+
+        document
+            .getElementById("role")
+            .style.display = "none";
+    }
+}
+
+function autoSelectRole(){
+
+    const requestedRole =
+        new URLSearchParams(
+            window.location.search
+        ).get("role");
+
+    if(!requestedRole){
+
+        return;
+    }
+
+    const role =
+        roles.find(
+            r =>
+                r.code ===
+                requestedRole.toUpperCase()
+        );
+
+    if(role){
+
+        document
+            .getElementById(
+                "role"
+            )
+            .value =
+            role.id;
+    }
+}
+
+async function register(){
+
+    const payload = {
+
+        name:
+            document
+                .getElementById(
+                    "name"
+                )
+                .value
+                .trim(),
+
+        email:
+            document
+                .getElementById(
+                    "email"
+                )
+                .value
+                .trim(),
+
+        password:
+            document
+                .getElementById(
+                    "password"
+                )
+                .value,
+
+        role_id:
+            parseInt(
+                document
+                    .getElementById(
+                        "role"
+                    )
+                    .value
+            )
+    };
+
+    if(!payload.name){
+
+        alert(
+            "Name is required"
+        );
+
+        return;
+    }
+
+    if(!payload.email){
+
+        alert(
+            "Email is required"
+        );
+
+        return;
+    }
+
+    if(!payload.password){
+
+        alert(
+            "Password is required"
+        );
+
+        return;
+    }
+
+    if(!payload.role_id){
+
+        alert(
+            "Please select a role"
+        );
+
+        return;
+    }
+
+    const response =
+        await apiRequest(
+            "/api/auth/register",
+            "POST",
+            payload
+        );
+
+    console.log(response);
+
+    if(!response.success){
+
+        alert(
+            response.message
+        );
+
+        return;
+    }
+
+    alert(
+        "Registration Successful"
+    );
+
+    window.location.href =
+        "login.html";
+}
+
+loadRoles();
+
+</script>
+
+</body>
+
+</html>

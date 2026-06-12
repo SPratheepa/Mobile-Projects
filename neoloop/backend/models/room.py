@@ -36,11 +36,11 @@ class Room(BaseModel):
         db.JSON
     )
 
-    created_by = db.Column(
-        db.Integer,
-        db.ForeignKey("users.id"),
-        nullable=False
-    )
+    creator_id = db.Column(
+    db.Integer,
+    db.ForeignKey("users.id"),
+    nullable=False
+) 
 
     is_published = db.Column(
         db.Boolean,
@@ -48,7 +48,9 @@ class Room(BaseModel):
     )
 
     status = db.Column(
-        db.String(20)
+        db.String(20),
+        nullable=False,
+        default="DRAFT"
     )
 
     creator = db.relationship(

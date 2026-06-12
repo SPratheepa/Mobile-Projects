@@ -17,13 +17,12 @@ from utils.schema_validator import (
 )
 
 from flasgger import swag_from
-from utils.swagger_paths import SWAGGER_DIR
-REGISTER_SWAGGER = os.path.join(SWAGGER_DIR, "auth", "register.yml")
+from utils.swagger_docs import swag
 
 registration_bp = Blueprint("registration", __name__, url_prefix="/api/auth")
 
 @registration_bp.route("/register", methods=["POST"])
-@swag_from(REGISTER_SWAGGER)
+@swag_from(swag("auth", "register.yml"))
 def register():
     payload = SchemaValidator.validate(
         RegisterSchema(),

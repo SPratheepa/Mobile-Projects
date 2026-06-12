@@ -15,3 +15,10 @@ class RoleRepository(BaseRepository):
             Role.code == code,
             Role.is_deleted == False
         ).first()
+    
+    def get_all_active(self):
+
+        return Role.query.filter(
+            Role.is_deleted == False,
+            Role.is_active == True
+        ).all()

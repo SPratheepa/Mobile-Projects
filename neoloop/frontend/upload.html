@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NeoLoop — Upload Your Room</title>
+  <meta name="description" content="Upload your room photos or video to generate your personalized time loop escape room."/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/upload.css"/>
+</head>
+<body>
+  <div class="bg-canvas">
+    <div class="grid-overlay"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M11 2L20 6.5V15.5L11 20L2 15.5V6.5L11 2Z" stroke="url(#nlg)" stroke-width="1.5" fill="none"/>
+          <circle cx="11" cy="11" r="2.5" fill="url(#nlg)"/>
+          <defs><linearGradient id="nlg" x1="2" y1="2" x2="20" y2="20" gradientUnits="userSpaceOnUse"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs>
+        </svg>
+        <span>Neo<span class="accent">Loop</span></span>
+      </a>
+      <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
+  </nav>
+
+  <main class="upload-main">
+    <!-- Left: Upload Panel -->
+    <div class="upload-panel" id="upload-panel">
+      <div class="panel-header">
+        <span class="step-indicator" id="step-indicator">Step 1 of 3</span>
+        <h1 id="panel-title">Upload Your Room</h1>
+        <p id="panel-desc">Drag & drop room photos or video. Our AI will reconstruct the space and inject puzzles.</p>
+      </div>
+
+      <!-- Step 1: Upload -->
+      <div class="step-content" id="step-1">
+        <div class="drop-zone" id="drop-zone">
+          <div class="dz-inner">
+            <div class="dz-icon">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <path d="M24 4L44 14V34L24 44L4 34V14L24 4Z" stroke="url(#dzg)" stroke-width="1.5" fill="none"/>
+                <path d="M24 18V30M18 24H30" stroke="url(#dzg)" stroke-width="2" stroke-linecap="round"/>
+                <defs><linearGradient id="dzg" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs>
+              </svg>
+            </div>
+            <div class="dz-text">
+              <span class="dz-main">Drop photos or video here</span>
+              <span class="dz-sub">PNG, JPG, MP4 · Max 50MB per file</span>
+            </div>
+            <button class="dz-btn" id="dz-browse-btn" onclick="document.getElementById('file-input').click()">Browse Files</button>
+            <input type="file" id="file-input" accept="image/*,video/*" multiple hidden/>
+          </div>
+        </div>
+
+        <div class="or-divider"><span>or</span></div>
+
+        <div class="demo-options">
+          <p class="demo-label">Try with a demo room:</p>
+          <div class="demo-cards">
+            <button class="demo-card" id="demo-bedroom" data-room="bedroom">
+              <span class="dc-ico">🛏️</span>
+              <span class="dc-name">Bedroom</span>
+              <span class="dc-diff">Easy</span>
+            </button>
+            <button class="demo-card" id="demo-office" data-room="office">
+              <span class="dc-ico">🖥️</span>
+              <span class="dc-name">Office</span>
+              <span class="dc-diff">Medium</span>
+            </button>
+            <button class="demo-card" id="demo-lab" data-room="lab">
+              <span class="dc-ico">🔬</span>
+              <span class="dc-name">Lab</span>
+              <span class="dc-diff">Hard</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- AI Prompt Option -->
+        <div class="ai-prompt-box">
+          <label class="aip-label">Or generate with AI prompt:</label>
+          <div class="aip-row">
+            <input type="text" id="ai-prompt-input" class="aip-input" placeholder="e.g. Haunted Victorian library..." maxlength="120"/>
+            <button class="aip-btn" id="ai-gen-btn">Generate ✨</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Processing -->
+      <div class="step-content hidden" id="step-2">
+        <div class="process-steps">
+          <div class="proc-step" id="proc-1">
+            <div class="proc-icon"></div>
+            <div class="proc-info">
+              <span class="proc-title">Analyzing room structure...</span>
+              <div class="proc-bar"><div class="proc-fill" id="pf-1"></div></div>
+            </div>
+          </div>
+          <div class="proc-step" id="proc-2">
+            <div class="proc-icon"></div>
+            <div class="proc-info">
+              <span class="proc-title">Detecting objects & surfaces...</span>
+              <div class="proc-bar"><div class="proc-fill" id="pf-2"></div></div>
+            </div>
+          </div>
+          <div class="proc-step" id="proc-3">
+            <div class="proc-icon"></div>
+            <div class="proc-info">
+              <span class="proc-title">Building 3D scene graph...</span>
+              <div class="proc-bar"><div class="proc-fill" id="pf-3"></div></div>
+            </div>
+          </div>
+          <div class="proc-step" id="proc-4">
+            <div class="proc-icon"></div>
+            <div class="proc-info">
+              <span class="proc-title">Injecting time loop puzzles...</span>
+              <div class="proc-bar"><div class="proc-fill" id="pf-4"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="proc-log" id="proc-log"></div>
+      </div>
+
+      <!-- Step 3: Configure -->
+      <div class="step-content hidden" id="step-3">
+        <div class="config-grid">
+          <div class="config-group">
+            <label>Difficulty</label>
+            <div class="config-options" id="diff-opts">
+              <button class="cfg-opt active" data-val="easy">Easy</button>
+              <button class="cfg-opt" data-val="medium">Medium</button>
+              <button class="cfg-opt" data-val="hard">Hard</button>
+            </div>
+          </div>
+          <div class="config-group">
+            <label>Game Mode</label>
+            <div class="config-options" id="mode-opts">
+              <button class="cfg-opt active" data-val="escape">Escape</button>
+              <button class="cfg-opt" data-val="detective">Detective</button>
+              <button class="cfg-opt" data-val="horror">Horror</button>
+            </div>
+          </div>
+          <div class="config-group">
+            <label>Loop Count</label>
+            <div class="loop-slider-wrap">
+              <input type="range" id="loop-count" min="3" max="7" value="5" class="loop-slider"/>
+              <span id="loop-count-val">5 Loops</span>
+            </div>
+          </div>
+          <div class="config-group">
+            <label>Share Room</label>
+            <div class="share-toggle-wrap">
+              <label class="toggle">
+                <input type="checkbox" id="share-toggle" checked/>
+                <span class="toggle-track"><span class="toggle-thumb"></span></span>
+              </label>
+              <span class="toggle-label">Allow others to play your room</span>
+            </div>
+          </div>
+        </div>
+        <button class="start-btn" id="start-game-btn">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><polygon points="7,4 17,10 7,16" fill="currentColor"/></svg>
+          Enter the Loop
+        </button>
+      </div>
+    </div>
+
+    <!-- Right: Live Preview -->
+    <div class="preview-panel">
+      <div class="pp-header">
+        <span class="pp-tag">Live Preview</span>
+        <div class="pp-status" id="pp-status"><span class="pp-dot"></span>Waiting for upload</div>
+      </div>
+      <div class="room-preview" id="room-preview">
+        <div class="rp-placeholder">
+          <div class="rp-hex-anim">
+            <div class="hex h1"></div>
+            <div class="hex h2"></div>
+            <div class="hex h3"></div>
+          </div>
+          <span>Your 3D room will appear here</span>
+        </div>
+      </div>
+      <div class="detected-objects" id="detected-objects">
+        <div class="do-header">Detected Objects</div>
+        <div class="do-list" id="do-list">
+          <div class="do-empty">Upload a room to see detected objects</div>
+        </div>
+      </div>
+      <div class="puzzle-preview" id="puzzle-preview">
+        <div class="pp2-header">Generated Puzzles</div>
+        <div class="pp2-list" id="pp2-list">
+          <div class="do-empty">Puzzles generate after processing</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/upload.js"></script>
+</body>
+</html>

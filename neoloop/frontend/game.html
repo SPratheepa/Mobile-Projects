@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NeoLoop — Playing Your Room</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/game.css"/>
+</head>
+<body>
+  <!-- HUD Overlay -->
+  <div class="hud" id="hud">
+    <div class="hud-top">
+      <div class="hud-left">
+        <a href="upload.html" class="hud-back">← Exit</a>
+        <div class="hud-room-name" id="hud-room-name">Bedroom Loop</div>
+      </div>
+      <div class="hud-center">
+        <div class="loop-display" id="loop-display">
+          <div class="ld-label">LOOP</div>
+          <div class="ld-count"><span id="current-loop">1</span><span class="ld-sep">/</span><span id="total-loops">5</span></div>
+          <div class="ld-bars" id="ld-bars"></div>
+        </div>
+      </div>
+      <div class="hud-right">
+        <div class="hud-timer" id="hud-timer">⏱ 00:00</div>
+        <div class="hud-found" id="hud-found">🗝️ 0/3</div>
+        <button class="hud-btn" id="hud-inventory-btn" title="Inventory (I)">🎒</button>
+        <button class="hud-btn" id="hud-map-btn" title="Map (M)">🗺️</button>
+      </div>
+    </div>
+
+    <!-- Crosshair -->
+    <div class="crosshair" id="crosshair">
+      <div class="ch-h"></div>
+      <div class="ch-v"></div>
+      <div class="ch-dot"></div>
+    </div>
+
+    <!-- Interaction Prompt -->
+    <div class="interact-prompt hidden" id="interact-prompt">
+      <div class="ip-key">E</div>
+      <div class="ip-text" id="ip-text">Interact</div>
+    </div>
+
+    <!-- Message Feed -->
+    <div class="msg-feed" id="msg-feed"></div>
+
+    <!-- Bottom Controls -->
+    <div class="hud-bottom">
+      <div class="ctrl-hint"><kbd>W A S D</kbd> Move</div>
+      <div class="ctrl-hint"><kbd>Mouse</kbd> Look</div>
+      <div class="ctrl-hint"><kbd>E</kbd> Interact</div>
+      <div class="ctrl-hint"><kbd>R</kbd> Reset Loop</div>
+      <div class="ctrl-hint"><kbd>Click</kbd> Lock cursor</div>
+    </div>
+  </div>
+
+  <!-- Inventory Panel -->
+  <div class="side-panel hidden" id="inventory-panel">
+    <div class="sp-header">
+      <span>🎒 Inventory</span>
+      <button class="sp-close" id="close-inventory">×</button>
+    </div>
+    <div class="sp-content" id="inventory-content">
+      <div class="sp-empty">Your inventory is empty. Explore the room and interact with objects to find clues and keys.</div>
+    </div>
+  </div>
+
+  <!-- Map Panel -->
+  <div class="side-panel hidden" id="map-panel">
+    <div class="sp-header">
+      <span>🗺️ Room Map</span>
+      <button class="sp-close" id="close-map">×</button>
+    </div>
+    <div class="sp-content">
+      <div class="mini-map" id="mini-map">
+        <div class="mm-room">
+          <div class="mm-player" id="mm-player"></div>
+          <div class="mm-label">You</div>
+        </div>
+        <div class="map-legend">
+          <div class="ml-item"><span class="ml-dot ml-purple"></span>Interactable</div>
+          <div class="ml-item"><span class="ml-dot ml-teal"></span>Discovered</div>
+          <div class="ml-item"><span class="ml-dot ml-green"></span>Solved</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loop Transition Overlay -->
+  <div class="loop-overlay hidden" id="loop-overlay">
+    <div class="lo-content">
+      <div class="lo-icon">🔁</div>
+      <div class="lo-title" id="lo-title">LOOP RESET</div>
+      <div class="lo-sub" id="lo-sub">The room resets. But you remember everything.</div>
+      <div class="lo-count" id="lo-count">Entering Loop 2...</div>
+      <div class="lo-bar"><div class="lo-fill" id="lo-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- Puzzle Modal -->
+  <div class="puzzle-modal hidden" id="puzzle-modal">
+    <div class="pm-box">
+      <div class="pm-header">
+        <span class="pm-ico" id="pm-ico">🔐</span>
+        <span class="pm-title" id="pm-title">Combination Lock</span>
+        <button class="pm-close" id="pm-close">×</button>
+      </div>
+      <div class="pm-body" id="pm-body">
+        <!-- Dynamic puzzle content injected here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Win Screen -->
+  <div class="win-screen hidden" id="win-screen">
+    <div class="ws-content">
+      <div class="ws-icon">🏆</div>
+      <h2 class="ws-title">You Escaped!</h2>
+      <p class="ws-sub" id="ws-sub">You broke the loop in 3 minutes 42 seconds!</p>
+      <div class="ws-stats" id="ws-stats"></div>
+      <div class="ws-btns">
+        <button class="ws-btn ws-btn-primary" id="ws-share">Share Your Room</button>
+        <a href="upload.html" class="ws-btn ws-btn-ghost">Play Another</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loading-screen">
+    <div class="ls-content">
+      <div class="ls-hex">
+        <div class="lh-ring r1"></div>
+        <div class="lh-ring r2"></div>
+        <div class="lh-ring r3"></div>
+        <div class="lh-icon">🔁</div>
+      </div>
+      <div class="ls-text" id="ls-text">Initializing Loop...</div>
+      <div class="ls-bar"><div class="ls-fill" id="ls-fill"></div></div>
+      <div class="ls-hint" id="ls-hint">Memory is your only weapon.</div>
+    </div>
+  </div>
+
+  <!-- Three.js + game -->
+  <canvas id="game-canvas"></canvas>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/puzzle-engine.js"></script>
+  <script src="js/loop-engine.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>

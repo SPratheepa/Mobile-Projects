@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>NeoLoop | Creator Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/dashboard.css">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <div class="top-bar">
+
+        <div>
+
+            <h1>
+                My Rooms
+            </h1>
+
+            <p>
+                Manage your escape rooms
+            </p>
+
+        </div>
+
+        <div class="top-actions">
+
+            <button
+                class="create-btn"
+                onclick="window.location.href='upload.html'">
+
+                Create Room
+
+            </button>
+
+            <button
+                class="logout-btn"
+                onclick="logout()">
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div
+        id="rooms"
+        class="rooms-grid">
+
+        <div class="loading">
+            Loading rooms...
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/dashboard.js"></script>
+
+</body>
+</html>
